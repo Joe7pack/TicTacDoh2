@@ -1,4 +1,4 @@
-package com.guzzardo.android.willyshmo.kotlintictacdoh
+package com.guzzardo.tictacdoh2
 
 import android.app.Activity
 import android.content.Intent

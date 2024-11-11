@@ -1,6 +1,7 @@
 package com.guzzardo.tictacdoh2
 
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 /*
  * Copyright (C) 2010 The Android Open Source Project
@@ -27,8 +28,8 @@ class AboutActivity : android.app.Activity() {
         findViewById<android.view.View>(R.id.about_ok).setOnClickListener {
             finish()
         }
-        mAdView = findViewById<android.view.View>(R.id.ad_about) as com.google.android.gms.ads.AdView
-        val adRequest = com.google.android.gms.ads.AdRequest.Builder().build()
+        mAdView = findViewById<android.view.View>(R.id.ad_about) as AdView
+        val adRequest = AdRequest.Builder().build()
         mAdView!!.loadAd(adRequest)
     }
 }
