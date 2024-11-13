@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="1.8"
+        android:text="@string/splash_screen"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/waiterTextArea"
+            android:gravity="bottom"
+            android:layout_below="@id/textView"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/waiterText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:shadowColor="@android:color/background_dark"
+                android:shadowDx="2.0"
+                android:shadowDy="2.0"
+                android:shadowRadius="1.8"
+                android:text="@string/prize_list_wait"
+                android:textColor="@android:color/primary_text_dark"
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/waiterTextArea2"
+                android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:layout_height="40dp" android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/pBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_marginTop="10dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:minWidth="300dp"
+                        android:minHeight="0dp"
+                        android:progress="0"/>
+                </LinearLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"   >
+
+    <!-- Other attributes -->
+
+
+<ImageView
+android:id="@+id/image_shot"
+app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+app:layout_constraintTop_toTopOf="@+id/constraintLayout"/>
+
+
+<View
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:background="@android:color/white"
+app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+app:layout_constraintStart_toStartOf="@+id/constraintLayout"/>
+
+
+<TextView
+android:id="@+id/text_title"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+app:layout_constraintEnd_toStartOf="@+id/imageView"
+app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+tools:text="Japan"/>
+
+
+<TextView
+android:id="@+id/text_like_count"
+app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+tools:text="1,287"/>
+
+</ConstraintLayout>

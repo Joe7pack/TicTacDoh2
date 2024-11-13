@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/relativeLayoutBase"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/move_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dip"
+        android:text="@string/move_mode"/>
+
+    <Button
+        android:id="@+id/sound_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/move_mode"
+        android:layout_marginStart="5dip"
+        android:text="@string/sound_mode"/>
+
+    <Button
+        android:id="@+id/reset_scores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sound_mode"
+        android:layout_marginStart="5dip"
+        android:text="@string/reset_scores"/>
+
+    <Button
+        android:id="@+id/token_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reset_scores"
+        android:layout_marginStart="5dip"
+        android:text="@string/alert_dialog_entry_token_size"/>
+
+    <Button
+        android:id="@+id/distance_unit_of_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/token_size"
+        android:layout_marginStart="5dip"
+        android:text="@string/distance_unit_of_measure"/>
+
+    <Button
+        android:id="@+id/text_entry_button_player1_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="5dip"
+        android:text="@string/alert_dialog_text_entry_player1_name"/>
+
+    <Button
+        android:id="@+id/token_color_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/text_entry_button_player1_name"
+        android:layout_below="@id/text_entry_button_player1_name"
+        android:text="@string/alert_dialog_token_color_1"/>
+
+    <Button
+        android:id="@+id/text_entry_button_player2_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/token_color_1"
+        android:layout_below="@id/token_color_1"
+        android:text="@string/alert_dialog_text_entry_player2_name"/>
+
+    <Button
+        android:id="@+id/token_color_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/text_entry_button_player2_name"
+        android:layout_below="@id/text_entry_button_player2_name"
+        android:text="@string/alert_dialog_token_color_2"/>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-0452251857239552/3610120170"/>
+
+</RelativeLayout>

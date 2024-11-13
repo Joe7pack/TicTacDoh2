@@ -24,20 +24,23 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.vending.licensing.*
 import com.google.firebase.FirebaseApp
+/* Firebase app indexing will no longer be supported by Google after August 2025.
+   Consider using Android App Links instead, although I prefer patties over links
 import com.google.firebase.appindexing.Action
 import com.google.firebase.appindexing.FirebaseAppIndex
 import com.google.firebase.appindexing.FirebaseUserActions
 import com.google.firebase.appindexing.Indexable
 import com.google.firebase.appindexing.builders.Actions
 import com.google.firebase.appindexing.builders.Indexables
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.isNetworkAvailable
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.prizesAreAvailable
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.mPlayer1Name
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.mPlayer2Name
+*/
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.isNetworkAvailable
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.prizesAreAvailable
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mPlayer1Name
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mPlayer2Name
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : Activity(), ToastMessage {
+class MainActivity : Activity(), ToastMessage  {
     private var mPrizeButton: Button? = null
     private var mAdView: AdView? = null
     private var mStatusText: TextView? = null
@@ -50,6 +53,7 @@ class MainActivity : Activity(), ToastMessage {
     public override fun onStart() {
         super.onStart()
         mApplicationContext = applicationContext
+        /*
         val indexableNotes = ArrayList<Indexable>()
         val noteToIndex = Indexables.noteDigitalDocumentBuilder()
             .setName(getString(R.string.note_to_index))
@@ -62,9 +66,11 @@ class MainActivity : Activity(), ToastMessage {
         FirebaseApp.initializeApp(this)
         FirebaseAppIndex.getInstance(this).update(*notesArr)
         FirebaseUserActions.getInstance(this).start(action)
-        writeToLog("MainActivity", "onStart called at " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date()))
+        */
+        writeToLog("MainActivity", "onStart called at " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date()))
     }
 
+    /*
     private val action: Action
         get() = Actions.newView(getString(R.string.action_string), getString(R.string.action_url))
 
@@ -72,6 +78,7 @@ class MainActivity : Activity(), ToastMessage {
         FirebaseUserActions.getInstance(this).end(action)
         super.onStop()
     }
+     */
 
     public override fun onDestroy() {
         super.onDestroy()

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|left"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="1.8"
+        android:text="@string/splash_screen"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/waiterText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="1.8"
+        android:text="Please wait while we load your prize list"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_below="@id/waiterText"
+        android:id="@+id/splash_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Button" />
+
+    <ProgressBar
+        android:layout_below="@id/splash_button"
+        android:layout_centerInParent="true"
+        android:id="@+id/pBar"
+        style="?android:attr/progressBarStyleHorizontal"
+
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+
+        android:indeterminate="false"
+        android:max="100"
+        android:minWidth="200dp"
+        android:minHeight="50dp"
+        android:progress="0" />
+
+
+
+</RelativeLayout>

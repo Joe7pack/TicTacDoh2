@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2010 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+    
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"  
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+        
+    
+    <com.guzzardo.tictacdoh2.GameView
+        android:id="@+id/game_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <!-- TextView
+        android:id="@+id/info_turn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dip"
+        
+        android:textSize="18px"
+        / -->
+
+    <Button
+        android:id="@+id/next_turn"
+        android:text="I'm done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        />
+        
+    <LinearLayout 
+  		android:orientation="horizontal"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content"
+   		android:gravity="center_horizontal"
+   	>
+    	
+   		<ImageView
+       		android:id="@+id/player1_token"
+       		android:scaleType="fitCenter"
+       		android:layout_width="wrap_content"
+       		android:layout_height="wrap_content"
+       		android:gravity="left"
+       		/>         	
+    	
+    	<TextView
+        	android:id="@+id/player1_score"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="10dip"
+        	android:gravity="left"
+        	android:text="000"
+        	/> 
+        		
+        		
+		<EditText
+        	android:id="@+id/player1_name"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="10dip"
+        	android:gravity="left"
+        	android:text="Player 1"
+        	android:editable="false"
+            android:textColor="#000000"           	
+        	/>         		
+        		
+        		
+    	<TextView
+        	android:id="@+id/score_literal"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="10dip"
+        	android:gravity="center_horizontal"
+        	android:text="Score"
+        	/> 
+        		
+		<EditText
+        	android:id="@+id/player2_name"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="10dip"
+        	android:gravity="right"
+        	android:text="Player 2"
+        	android:editable="false"
+            android:textColor="#000000"           	
+        	/> 
+        		
+        		        		
+    	<TextView
+        	android:id="@+id/player2_score"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="10dip"
+        	android:text="000"
+        	/> 
+        		
+   		<ImageView
+       		android:id="@+id/player2_token"
+       		android:scaleType="fitCenter"
+       		android:layout_width="wrap_content"
+       		android:layout_height="wrap_content"
+       		/>    
+	</LinearLayout>
+
+<!-- fragment
+        android:id="@+id/listFragment"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        
+        class="com.guzzardo.android.willyshmo.kotlintictacdoh.MyAlertDialogFragment" ></fragment  -->
+    
+    
+
+</LinearLayout>
+

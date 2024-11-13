@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2010 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+   <!-- android:background="@drawable/willy_shmo_icon"  -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+   
+   	<Button
+       	android:id="@+id/one_player"
+       	android:text="@string/one_player"
+       	android:layout_width="wrap_content"
+       	android:layout_marginLeft="5dip"
+   		android:layout_height="wrap_content"
+   		android:layout_alignParentTop="true"
+   		android:layout_alignParentLeft="true"
+       	/>  
+       	
+   	<Button
+       	android:id="@+id/two_player"
+       	android:text="@string/two_player"
+   		android:layout_marginLeft="5dip"
+   	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+   		android:layout_alignParentTop="true"
+   		android:layout_alignParentRight="true"
+       	/>      
+     
+    <Button
+    	android:id="@+id/settings_dialog"
+    	android:text="@string/settings"
+    	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_marginLeft="5dip"
+		android:layout_below="@id/one_player"
+        />
+        	    
+        	   
+    <Button
+     	android:id="@+id/rules"
+       	android:text="@string/rules"
+ 		android:layout_marginLeft="5dip"
+ 		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+   		android:layout_alignRight="@id/two_player"
+   		android:layout_below="@id/two_player"
+       	/>
+    
+    <Button
+        android:id="@+id/about"
+        android:text="@string/about"
+       	android:layout_marginLeft="5dip"
+       	android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+   		android:layout_alignRight="@id/two_player"
+   		android:layout_below="@id/rules"
+       	/>
+    
+    <Button
+        android:id="@+id/prizes_dialog"
+        android:text="@string/prizes"
+       	android:layout_marginLeft="5dip"
+       	android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+ 		android:layout_centerHorizontal="true"
+       	/>
+
+	<Button
+		android:id="@+id/check_license_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/check_license"
+		android:layout_below="@id/settings_dialog"
+		/>
+
+
+
+	<TextView
+		android:id="@+id/status_text"
+		android:layout_width="wrap_content"
+		android:layout_height="0dip"
+		android:layout_weight="1"
+		android:layout_below="@id/prizes_dialog"
+		/>
+
+
+
+       	
+	<com.google.android.gms.ads.AdView android:id="@+id/adView"
+		xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="a14c4786f7a05ac"
+        ads:adSize="BANNER"
+        android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true" />
+
+	<!-- ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
+	ads:loadAdOnCreate="true" -->
+
+</RelativeLayout>
+        
+

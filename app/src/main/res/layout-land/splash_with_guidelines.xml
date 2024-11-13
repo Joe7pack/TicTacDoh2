@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splash_with_progress_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/verticalIndentGuideline2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_begin="0dp"
+    app:layout_constraintGuide_percent=".1" />
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/bottomGuideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_begin="0dp"
+    app:layout_constraintGuide_percent=".8" />
+
+    <TextView
+        android:id="@+id/titleTextView2"
+        android:layout_width="542dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="5dp"
+        android:gravity="start"
+        android:maxLines="1"
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="1.8"
+        android:text="@string/splash_screen"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="25sp"
+        app:autoSizeMaxTextSize="34sp"
+        app:autoSizeMinTextSize="24sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/waitText"
+        android:layout_width="362dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="64dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="1.8"
+        android:textColor="@android:color/primary_text_dark"
+        app:autoSizeMaxTextSize="28sp"
+        app:autoSizeMinTextSize="22sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="@+id/verticalIndentGuideline2"
+        app:layout_constraintTop_toBottomOf="@+id/bottomGuideline"
+        android:text="@string/prize_list_wait" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="204dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="64dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintHeight_percent=".1"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/waitText"
+        app:layout_constraintTop_toBottomOf="@+id/waitText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
