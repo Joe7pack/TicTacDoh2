@@ -37,27 +37,27 @@ class TwoPlayerActivity : android.app.Activity() {
 
     public override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.guzzardo.android.willyshmo.kotlintictacdoh.R.layout.two_player)
-        mPlayer1Name = getString(com.guzzardo.android.willyshmo.kotlintictacdoh.R.string.player_1)
-        mPlayer2Name = getString(com.guzzardo.android.willyshmo.kotlintictacdoh.R.string.willy_name)
+        setContentView(R.layout.two_player)
+        mPlayer1Name = getString(R.string.player_1)
+        mPlayer2Name = getString(R.string.willy_name)
         val player1Name = intent.getStringExtra(GameActivity.PLAYER1_NAME)
         if (player1Name != null) mPlayer1Name = player1Name
         val player2Name = intent.getStringExtra(GameActivity.PLAYER2_NAME)
         if (player2Name != null) mPlayer2Name = player2Name
-        mButtonPlayer1 = findViewById<android.view.View>(com.guzzardo.android.willyshmo.kotlintictacdoh.R.id.player_1) as android.widget.Button
-        mButtonPlayer1!!.text = kotlin.String.Companion.format(resources.getString(com.guzzardo.android.willyshmo.kotlintictacdoh.R.string.player_moves_first), mPlayer1Name)
-        mButtonPlayer2 = findViewById<android.view.View>(com.guzzardo.android.willyshmo.kotlintictacdoh.R.id.player_2) as android.widget.Button
-        mButtonPlayer2!!.text = kotlin.String.Companion.format(resources.getString(com.guzzardo.android.willyshmo.kotlintictacdoh.R.string.player_moves_first), mPlayer2Name)
-        findViewById<android.view.View>(com.guzzardo.android.willyshmo.kotlintictacdoh.R.id.player_1).setOnClickListener {
+        mButtonPlayer1 = findViewById<android.view.View>(R.id.player_1) as android.widget.Button
+        mButtonPlayer1!!.text = kotlin.String.Companion.format(resources.getString(R.string.player_moves_first), mPlayer1Name)
+        mButtonPlayer2 = findViewById<android.view.View>(R.id.player_2) as android.widget.Button
+        mButtonPlayer2!!.text = kotlin.String.Companion.format(resources.getString(R.string.player_moves_first), mPlayer2Name)
+        findViewById<android.view.View>(R.id.player_1).setOnClickListener {
             startGame(1)
         }
-        findViewById<android.view.View>(com.guzzardo.android.willyshmo.kotlintictacdoh.R.id.player_2).setOnClickListener {
+        findViewById<android.view.View>(R.id.player_2).setOnClickListener {
             startGame(2)
         }
-        mButtonPlayOverNetwork = findViewById<android.view.View>(com.guzzardo.android.willyshmo.kotlintictacdoh.R.id.play_over_network) as android.widget.Button
+        mButtonPlayOverNetwork = findViewById<android.view.View>(R.id.play_over_network) as android.widget.Button
         mButtonPlayOverNetwork!!.setOnClickListener { playOverNetwork() }
 
-        mAdView = findViewById<android.view.View>(com.guzzardo.android.willyshmo.kotlintictacdoh.R.id.ad_two_player) as com.google.android.gms.ads.AdView
+        mAdView = findViewById<android.view.View>(R.id.ad_two_player) as com.google.android.gms.ads.AdView
         val adRequest = com.google.android.gms.ads.AdRequest.Builder().build()
         mAdView!!.loadAd(adRequest)
     }
@@ -80,10 +80,7 @@ class TwoPlayerActivity : android.app.Activity() {
             displayNameRequiredAlert()
             return
         }
-        val i = android.content.Intent(
-            this,
-            com.guzzardo.android.willyshmo.kotlintictacdoh.PlayOverNetwork::class.java
-        )
+        val i = android.content.Intent(this, PlayOverNetwork::class.java)
         i.putExtra(GameActivity.PLAYER1_NAME, mPlayer1Name)
         i.putExtra(GameActivity.PLAY_AGAINST_WILLY, "false")
         startActivity(i)
