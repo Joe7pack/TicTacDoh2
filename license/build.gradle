@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdk 35
-    namespace "com.guzzardo.android.willyshmo.kotlintictacdoh"
+    namespace "com.guzzardo.tictacdoh2"
     //compileSdkVersion 31
     //buildToolsVersion "27.0.3"
     //buildToolsVersion "28-rc2"

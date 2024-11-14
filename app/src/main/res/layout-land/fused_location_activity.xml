@@ -39,6 +39,7 @@ tools:context=".FusedLocationActivity">
             android:baselineAligned="false"
             android:orientation="horizontal">
 
+            <!--
             <Button
                 android:id="@+id/start_updates_button"
                 android:layout_width="0dp"
@@ -59,6 +60,7 @@ tools:context=".FusedLocationActivity">
                 android:gravity="center"
                 android:onClick="stopUpdatesButtonHandler"
                 android:text="@string/stop_updates" />
+                -->
         </LinearLayout>
 
         <TextView
