@@ -16,7 +16,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.ListFragment
 import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
@@ -140,10 +140,12 @@ class PlayersOnlineActivity : FragmentActivity(), ToastMessage {
                 i.putExtra(GameActivity.PLAYER2_NAME, opposingPlayerName)
                 i.putExtra(GameActivity.START_FROM_PLAYER_LIST, "true")
                 writeToLog("PlayersOnlineActivity", "starting client and server from new player: $opposingPlayerName")
-                startActivity(appContext, i, null)
+                val intents = arrayOf(i)
+                ActivityCompat.startActivities(appContext, intents)
+                //startActivity(appContext, i, null) //this was marked as deprecated, so I replaced it with the above 2 lines
             }
             writeToLog("PlayersOnlineActivity", "got LetsPlay response received message: $message at: " +
-                SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+                SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
             )
         }
         finish()
@@ -225,10 +227,6 @@ class PlayersOnlineActivity : FragmentActivity(), ToastMessage {
         override fun onDestroyView() {
             super.onDestroyView()
             writeToLog("PlayersOnlineFragment", "onDestroyView() called")
-        }
-
-        override fun onDestroyOptionsMenu() {
-            super.onDestroyOptionsMenu()
         }
 
         override fun onDetach() {
@@ -439,7 +437,7 @@ class PlayersOnlineActivity : FragmentActivity(), ToastMessage {
     private fun parseUserList(usersLoggedOn: String?): TreeMap<String, HashMap<String, String>> {
         val userTreeMap = TreeMap<String, HashMap<String, String>>()
         try {
-            val jsonObject = JSONObject(usersLoggedOn)
+            val jsonObject = JSONObject(usersLoggedOn!!)
             val userArray = jsonObject.getJSONArray("UserList")
             for (y in 0 until userArray.length()) {
                 val userMapValues = HashMap<String, String>()

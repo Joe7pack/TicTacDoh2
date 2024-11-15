@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 class PrizeListAdapter(
     context: android.content.Context?,
@@ -66,7 +67,7 @@ class PrizeListAdapter(
                         convertedDistance = convertedDistance.times(1.60934) //number of kilometers per mile
                     }
                     var decimal = BigDecimal(convertedDistance)
-                    decimal = decimal.setScale(2, BigDecimal.ROUND_UP)
+                    decimal = decimal.setScale(2, RoundingMode.UP)
                     textDistance.text = decimal.toString()
                 }
                 prizeLocation[position] == "0" -> {

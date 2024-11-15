@@ -36,7 +36,8 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
     /**
      * Stores parameters for requests to the FusedLocationProviderApi.
      */
-    private val mLocationRequest: LocationRequest? = null
+    //private val mLocationRequest: LocationRequest? = null
+    private lateinit var mLocationRequest: LocationRequest //= null
 
     /**
      * Stores the types of location services the client is interested in using. Used for checking
@@ -102,12 +103,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
         buildLocationSettingsRequest()
         mErrorHandler = ErrorHandler()
         startMyThread()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkPermissions()
-        } else {
-            setStartLocationLookup()
-            location
-        }
+        checkPermissions()
         writeToLog("FusedLocationActivity", "onCreate finished")
     }
 
@@ -129,7 +125,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
             if (savedInstanceState.keySet().contains(KEY_LOCATION)) {
                 // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
                 // is not null.
-                mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION)
+                //mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION, Location::class.java)
             }
 
             // Update the value of mLastUpdateTime from the Bundle and update the UI.
@@ -174,7 +170,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    //@RequiresApi(api = Build.VERSION_CODES.M)
     private fun checkPermissions() {
         checkPermission(this, Manifest.permission.ACCESS_FINE_LOCATION,
             object : PermissionAskListener {

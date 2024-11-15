@@ -23,7 +23,7 @@ class GetPrizeListTask {
             mResources = resources
             writeToLog(
                 "GetPrizeListTask",
-                "main() called at: " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+                "main() called at: " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
             )
             val longitude = WillyShmoApplication.mLongitude
             val latitude = WillyShmoApplication.mLatitude
@@ -54,7 +54,7 @@ class GetPrizeListTask {
     private fun processRetrievedPrizeList() {
         try {
             writeToLog("GetPrizeListTask","processRetrievedPrizeList prizes available: $mPrizesAvailable")
-            writeToLog("GetPrizeListTask", "processRetrievedPrizeList called at: " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date()))
+            writeToLog("GetPrizeListTask", "processRetrievedPrizeList called at: " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date()))
             mCallerActivity.prizeLoadInProgress()
             if (mPrizesAvailable != null && mPrizesAvailable!!.length > 20) {
                 loadPrizesIntoArrays()
@@ -68,7 +68,7 @@ class GetPrizeListTask {
             writeToLog("GetPrizeListTask", "processRetrievedPrizeList exception called " + e.message)
             mCallerActivity.sendToastMessage("processRetrievedPrizeList exception called $e.message")
         }
-        writeToLog("GetPrizeListTask", "processRetrievedPrizeList completed at: " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+        writeToLog("GetPrizeListTask", "processRetrievedPrizeList completed at: " + SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
         )
     }
 
@@ -103,7 +103,7 @@ class GetPrizeListTask {
     private fun parsePrizeList(): TreeMap<String, Array<String?>> {
         val userTreeMap = TreeMap<String, Array<String?>>()
         try {
-            val convertedPrizesAvailable = convertToArray(StringBuilder(mPrizesAvailable))
+            val convertedPrizesAvailable = convertToArray(StringBuilder(mPrizesAvailable!!))
             val jsonObject = JSONObject(convertedPrizesAvailable)
             val prizeArray = jsonObject.getJSONArray("PrizeList")
             for (x in 0 until prizeArray.length()) {

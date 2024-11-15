@@ -18,7 +18,7 @@ class SendMessageToRabbitMQTask {
                 connectionFactory.username = getConfigMap("RabbitMQUser")
                 connectionFactory.password = getConfigMap("RabbitMQPassword")
                 connectionFactory.virtualHost = getConfigMap("RabbitMQVirtualHost")
-                val portNumber = Integer.valueOf(getConfigMap("RabbitMQPort"))
+                val portNumber = Integer.valueOf(getConfigMap("RabbitMQPort")!!)
                 connectionFactory.port = portNumber
                 val connection = connectionFactory.newConnection()
                 val channel = connection.createChannel()

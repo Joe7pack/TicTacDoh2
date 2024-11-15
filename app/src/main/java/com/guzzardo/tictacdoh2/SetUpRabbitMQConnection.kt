@@ -22,7 +22,7 @@ class SetUpRabbitMQConnection {
             connectionFactory.username = getConfigMap("RabbitMQUser")
             connectionFactory.password = getConfigMap("RabbitMQPassword")
             connectionFactory.virtualHost = getConfigMap("RabbitMQVirtualHost")
-            val portNumber = Integer.valueOf(getConfigMap("RabbitMQPort"))
+            val portNumber = Integer.valueOf(getConfigMap("RabbitMQPort")!!)
             connectionFactory.port = portNumber
             connection = connectionFactory.newConnection()
             channel = connection.createChannel()
@@ -33,8 +33,9 @@ class SetUpRabbitMQConnection {
             mCallingActivity!!.sendToastMessage(e.message)
         }
         finally {
-            return RabbitMQConnection(connection, channel)
+            //return RabbitMQConnection(connection, channel)
         }
+        return RabbitMQConnection(connection, channel)
     }
 
     companion object {

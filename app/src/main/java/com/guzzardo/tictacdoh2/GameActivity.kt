@@ -26,6 +26,7 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import com.guzzardo.tictacdoh2.GameView.ICellListener
@@ -88,6 +89,8 @@ class GameActivity() : Activity(), ToastMessage, Parcelable {
     }
 
     /** Called when the activity is first created.  */
+    @Suppress("DEPRECATION")
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     public override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
         Companion.resources = resources
@@ -120,7 +123,12 @@ class GameActivity() : Activity(), ToastMessage, Parcelable {
         mGameView!!.setViewDisabled(false)
         mHostName = getConfigMap("RabbitMQIpAddress")
         mQueuePrefix = getConfigMap("RabbitMQQueuePrefix")
-        mStartSource = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES).toString()
+        //mStartSource = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES).toString()
+        mStartSource = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(PARCELABLE_VALUES.toString(), String::class.java)
+        } else {
+            mStartSource = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES).toString()
+        }).toString()
         writeToLog("GameActivity", "our parcelable extra item: $mStartSource")
         writeToLog("GameActivity", "onCreate() Completed taskId: $taskId")
     }

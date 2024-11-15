@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.util.Log
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.androidId
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.mLatitude
-import com.guzzardo.android.willyshmo.kotlintictacdoh.WillyShmoApplication.Companion.mLongitude
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.androidId
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mLatitude
+import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mLongitude
 import com.guzzardo.tictacdoh2.MainActivity
 import kotlinx.coroutines.*
 

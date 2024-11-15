@@ -29,7 +29,7 @@ import com.guzzardo.tictacdoh2.Utils.setRequestingLocationUpdates
  * bound to this service, frequent location updates are permitted. When the activity is removed
  * from the foreground, the service promotes itself to a foreground service, and location updates
  * continue. When the activity comes back to the foreground, the foreground service stops, and the
- * notification assocaited with that service is removed.
+ * notification associated with that service is removed.
  */
 class LocationUpdatesService : android.app.Service() {
     private val mBinder: android.os.IBinder = LocalBinder()
@@ -43,7 +43,7 @@ class LocationUpdatesService : android.app.Service() {
     private var mNotificationManager: NotificationManager? = null
 
     // Contains parameters used by [com.google.android.gms.location.FusedLocationProviderApi].
-    private lateinit var mLocationRequest: LocationRequest
+    private lateinit var mLocationRequest: LocationRequest.Builder
 
     // Provides access to the Fused Location Provider API.
     private var mFusedLocationClient: FusedLocationProviderClient? = null
@@ -102,7 +102,7 @@ class LocationUpdatesService : android.app.Service() {
         // and binds with this service. The service should cease to be a foreground service
         // when that happens.
         writeToLog(TAG, "in onBind()")
-        stopForeground(true)
+        stopForeground(STOP_FOREGROUND_REMOVE)
         mChangingConfiguration = false
         return mBinder
     }
@@ -112,7 +112,7 @@ class LocationUpdatesService : android.app.Service() {
         // and binds once again with this service. The service should cease to be a foreground
         // service when that happens.
         writeToLog(TAG, "in onRebind()")
-        stopForeground(true)
+        stopForeground(STOP_FOREGROUND_REMOVE)
         mChangingConfiguration = false
         super.onRebind(intent)
     }
@@ -145,7 +145,7 @@ class LocationUpdatesService : android.app.Service() {
     /**
      * Makes a request for location updates. Note that in this sample we merely log the
      * [SecurityException].
-     */
+
     fun requestLocationUpdates() {
         writeToLog(TAG, "Requesting location updates")
         setRequestingLocationUpdates(this, true)
@@ -160,6 +160,7 @@ class LocationUpdatesService : android.app.Service() {
             writeToLog(TAG, "Lost location permission. Could not request updates. $unlikely")
         }
     }
+    */
 
     /**
      * Removes location updates. Note that in this sample we merely log the
@@ -191,7 +192,7 @@ class LocationUpdatesService : android.app.Service() {
             // The PendingIntent to launch activity.
             val activityPendingIntent = PendingIntent.getActivity(
                 this, 0,
-                Intent(this, MainActivity::class.java), 0
+                Intent(this, MainActivity::class.java), PendingIntent.FLAG_IMMUTABLE
             )
 
             val builder = NotificationCompat.Builder(this, "abcd")
@@ -228,7 +229,7 @@ class LocationUpdatesService : android.app.Service() {
             }
         }
 
-    private fun onNewLocation(location: Location) {
+    private fun onNewLocation(location: Location?) {
         writeToLog(TAG, "New location: $location")
         mLocation = location
 
@@ -245,16 +246,11 @@ class LocationUpdatesService : android.app.Service() {
 
     // Sets the location request parameters.
     private fun createLocationRequest() {
-        val locationRequest = LocationRequest.create().apply {
-            interval = 100
-            fastestInterval = 50
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            maxWaitTime= 100
-        }
-        mLocationRequest = locationRequest
-        mLocationRequest.interval = UPDATE_INTERVAL_IN_MILLISECONDS
-        mLocationRequest.fastestInterval = FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS
-        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest = LocationRequest.Builder(100)
+            .setMaxUpdates(Integer.MAX_VALUE)
+            .setIntervalMillis(100)
+            .setMinUpdateIntervalMillis(50)
+            .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
     }
 
     /**
@@ -293,7 +289,7 @@ class LocationUpdatesService : android.app.Service() {
         private const val CHANNEL_ID = "channel_01"
         const val ACTION_BROADCAST = PACKAGE_NAME + ".broadcast"
         const val EXTRA_LOCATION = PACKAGE_NAME + ".location"
-        private const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
+        private const val EXTRA_STARTED_FROM_NOTIFICATION = "$PACKAGE_NAME.started_from_notification"
 
         // The desired interval for location updates. Inexact. Updates may be more or less frequent.
         private const val UPDATE_INTERVAL_IN_MILLISECONDS: Long = 10000

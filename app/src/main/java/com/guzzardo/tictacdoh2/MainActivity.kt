@@ -301,9 +301,8 @@ class MainActivity : Activity(), ToastMessage  {
             // This is a polite way of saying the developer made a mistake
             // while setting up or calling the license checker library.
             // Please examine the error code and fix the error.
-            val result = String.format(getString(R.string.application_error, errorCode.toString()))
-            //val result = " applicationError: $errorCode"
-            displayResult(result)
+            val result = (R.string.application_error).plus(errorCode)
+            displayResult(result.toString())
         }
     }
 

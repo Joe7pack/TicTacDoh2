@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.guzzardo.tictacdoh2"
         multiDexEnabled = true
-        minSdk = 23
+        minSdk = 24
         targetSdk = 35
 
         versionCode = 1
@@ -53,13 +53,10 @@ dependencies {
     //implementation(libs.material3)
     //implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.android.material:material:1.3.0")
-
     //implementation("androidx.compose.material3:material3-window-size-class:1.3.1")
     //implementation(libs.androidx.material3.window.size.class)
     //implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.4.0-alpha03")
-
-
-
+    implementation("androidx.preference:preference:1.2.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
