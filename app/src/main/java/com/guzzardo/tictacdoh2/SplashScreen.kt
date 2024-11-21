@@ -19,7 +19,7 @@ import java.lang.Exception
 import java.util.*
 import kotlinx.coroutines.*
 
-/*
+/*  This logic flow and this class is obsolete as of November 2024
 Splash screen starts:
 
 calls FusedLocationActivity via intent
@@ -27,6 +27,8 @@ FusedLocationActivity gets Location permissions and then gets the Location
 FusedLocationActivity then calls GetPrizeListTask via an async call
 GetPrizeListTask then calls MainActivity which displays the screen showing the load prizes button
 LoadPrizesTask is no longer used
+
+As of November 2024  MainActivity now calls WillyShmoApplication which calls FusedLocationActivity via intent
 */
 
 class SplashScreen : android.app.Activity(), ToastMessage {

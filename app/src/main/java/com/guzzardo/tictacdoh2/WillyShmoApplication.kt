@@ -79,7 +79,7 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
         } else {
             mPrizeButton!!.visibility = View.GONE
         }
-        //mHandler = Handler(Looper.getMainLooper())
+
         // Try to use more data here. ANDROID_ID is a single point of attack.
         val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.NAME)
         // Library calls this when it's done.
@@ -243,9 +243,9 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
     }
 
     override fun sendToastMessage(message: String?) {
-        val msg = SplashScreen.Companion.mErrorHandler!!.obtainMessage()
+        val msg = mErrorHandler!!.obtainMessage()
         msg.obj = message
-        SplashScreen.Companion.mErrorHandler!!.sendMessage(msg)
+        mErrorHandler!!.sendMessage(msg)
     }
 
     class ErrorHandler : Handler(Looper.getMainLooper()) {
