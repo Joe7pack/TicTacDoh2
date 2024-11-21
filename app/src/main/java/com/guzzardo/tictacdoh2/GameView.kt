@@ -29,7 +29,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.guzzardo.tictacdoh2.ColorBall.Companion.setTokenColor
 import com.guzzardo.tictacdoh2.GameActivity.ClientThread
 import com.guzzardo.tictacdoh2.GameActivity.Companion.moveModeTouch
-import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
+import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.isNetworkAvailable
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.prizesAreAvailable
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.playersTooClose

@@ -12,7 +12,6 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.multidex.BuildConfig
 import com.google.android.gms.location.*
@@ -89,7 +88,6 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
         mCallerActivity = this
         pgsBar = findViewById<View>(R.id.progressBar) as ProgressBar
         pgsBar!!.progress = 10
-
         // Set labels
         mLatitudeLabel = resources.getString(R.string.latitude_label)
         mLongitudeLabel = resources.getString(R.string.longitude_label)
@@ -98,7 +96,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
         mLastUpdateTime = ""
 
         // Update values using data stored in the Bundle.
-        //updateValuesFromBundle(savedInstanceState)
+        updateValuesFromBundle(savedInstanceState)
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         buildLocationSettingsRequest()
         mErrorHandler = ErrorHandler()
@@ -125,7 +123,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
             if (savedInstanceState.keySet().contains(KEY_LOCATION)) {
                 // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
                 // is not null.
-                //mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION, Location::class.java)
+                mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION, Location::class.java)
             }
 
             // Update the value of mLastUpdateTime from the Bundle and update the UI.
@@ -141,7 +139,9 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
      * if a device has the needed location settings.
      */
     private fun buildLocationSettingsRequest() {
+        mLocationRequest = LocationRequest.Builder(100L).build()
         val builder = LocationSettingsRequest.Builder()
+        //TODO - uncomment when ready to test with a real phone
         builder.addLocationRequest(mLocationRequest)
         mLocationSettingsRequest = builder.build()
     }

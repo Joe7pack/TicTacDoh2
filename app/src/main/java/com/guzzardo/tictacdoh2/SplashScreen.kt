@@ -50,7 +50,7 @@ class SplashScreen : android.app.Activity(), ToastMessage {
     public override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         mApplicationContext = applicationContext
-        MobileAds.initialize(this) { }
+        //MobileAds.initialize(this) { }
         mErrorHandler = ErrorHandler()
         var mPrizesAvailable = false
         if ("true".equals(mResources?.getString(R.string.prizesAvailable), ignoreCase = true)) {
@@ -59,7 +59,7 @@ class SplashScreen : android.app.Activity(), ToastMessage {
         mLatitude = 0.0
         mLongitude = 0.0
         mCallerActivity = this
-        willyShmoApplicationContext = this.applicationContext
+        //willyShmoApplicationContext = this.applicationContext
         WillyShmoApplication.prizesAreAvailable = false
         val willyShmoApplicationContext = willyShmoApplicationContext
         val myIntent = Intent(willyShmoApplicationContext, FusedLocationActivity::class.java)

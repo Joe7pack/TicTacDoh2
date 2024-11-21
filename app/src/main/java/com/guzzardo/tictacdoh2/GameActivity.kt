@@ -30,7 +30,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import com.guzzardo.tictacdoh2.GameView.ICellListener
-import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
+import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
 import com.guzzardo.tictacdoh2.RabbitMQMessageConsumer.OnReceiveMessageHandler
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.androidId
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.getConfigMap
@@ -46,7 +46,7 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class GameActivity() : Activity(), ToastMessage, Parcelable {
+class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
     private var mServer = false
     private var mClient = false
     private val mHandler = Handler(Looper.getMainLooper(), MyHandlerCallback())
@@ -123,11 +123,18 @@ class GameActivity() : Activity(), ToastMessage, Parcelable {
         mGameView!!.setViewDisabled(false)
         mHostName = getConfigMap("RabbitMQIpAddress")
         mQueuePrefix = getConfigMap("RabbitMQQueuePrefix")
+
+        val intentExtras = intent.getExtras() //StringExtra(GameActivity.PLAYER1_NAME)
+        intentExtras?.putParcelable("intentExtras", mParcelable)
+        val myParcel = Parcel.obtain()
+        val myStrings = myParcel.createStringArray()
+        activityFromParcel(myParcel)
+
         //mStartSource = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES).toString()
         mStartSource = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(PARCELABLE_VALUES.toString(), String::class.java)
         } else {
-            mStartSource = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES).toString()
+            intent.getParcelableExtra<ActivityParser>(PARCELABLE_VALUES).toString()
         }).toString()
         writeToLog("GameActivity", "our parcelable extra item: $mStartSource")
         writeToLog("GameActivity", "onCreate() Completed taskId: $taskId")
@@ -1020,7 +1027,9 @@ class GameActivity() : Activity(), ToastMessage, Parcelable {
 // the future. As of 07/10/2010, the computer will select the xo token only on a winning move or for the last
 // move possible.
                 if (mPlayer2TokenChoice == GameView.BoardSpaceValues.EMPTY) {
-                    if (computerToken != GameView.BoardSpaceValues.EMPTY) mPlayer2TokenChoice = computerToken
+                    if (computerToken != GameView.BoardSpaceValues.EMPTY) {
+                        mPlayer2TokenChoice = computerToken
+                    }
                     mPlayer1TokenChoice = if (mPlayer2TokenChoice == GameView.BoardSpaceValues.CIRCLECROSS ||
                         mPlayer2TokenChoice == GameView.BoardSpaceValues.CROSS) { //computer will always choose X if it selects the XO card
                         GameView.BoardSpaceValues.CIRCLE // on its first move, we may want to change this behavior
@@ -2172,34 +2181,8 @@ class GameActivity() : Activity(), ToastMessage, Parcelable {
         }
     }
 
-    /*
-    private val newNetworkGameHandler2 = Handler(Looper.getMainLooper()) { msg -> // Your code logic goes here.
-        when (msg.what) {
-            ACCEPT_GAME -> setNetworkGameStatusAndResponse(true, false)
-            REJECT_GAME -> setNetworkGameStatusAndResponse(false, true)
-        }
-        true
-    }
-    */
-
-    constructor(parcel: Parcel) : this() {
-        mServer = parcel.readByte() != 0.toByte()
-        mClient = parcel.readByte() != 0.toByte()
-        mPlayer1TokenChoice = parcel.readInt()
-        mPlayer2TokenChoice = parcel.readInt()
-        mRabbitMQClientResponse = parcel.readString()
-        mRabbitMQServerResponse = parcel.readString()
-        mRabbitMQStartGameResponse = parcel.readString()
-        mServerHasOpponent = parcel.readString()
-    }
-
     private fun acceptIncomingGameRequestFromClient() {
         writeToLog("GameActivity", "at start of acceptIncomingGameRequestFromClient()")
-
-        //doesn't work here:
-        //val item = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES)
-        //writeToLog("GameActivity", "our parcelable extra item: $item")
-
         val acceptMsg = Message.obtain()
         acceptMsg.target = newNetworkGameHandler
         acceptMsg.what = ACCEPT_GAME
@@ -2338,23 +2321,16 @@ class GameActivity() : Activity(), ToastMessage, Parcelable {
         }
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(out: Parcel, flags: Int) {
-        out.writeInt(0)
-    }
-
     @Parcelize
     data class ParcelItems(val imageId: Int, val title: String): Parcelable
 
     companion object {
-        private var mApplicationContext: Context? = null
         private var mGameActivity: GameActivity? = null
+        lateinit var mParcelable: Parcelable // = null
+        private var mApplicationContext: Context? = null
         var errorHandler: ErrorHandler? = null
         //TODO - I think all of these constants can be put into an interface?
-        private const val packageName = "com.guzzardotictacdoh2"
+        private const val packageName = "com.guzzardo.tictacdoh2"
         /* Start player. Must be 1 or 2. Default is 1.  */
         const val EXTRA_START_PLAYER = "$packageName.GameActivity.EXTRA_START_PLAYER"
         const val START_PLAYER_HUMAN = "$packageName.GameActivity.START_PLAYER_HUMAN"

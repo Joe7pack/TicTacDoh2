@@ -9,7 +9,7 @@ import android.os.Message
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
+import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.androidId
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mLatitude
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mLongitude

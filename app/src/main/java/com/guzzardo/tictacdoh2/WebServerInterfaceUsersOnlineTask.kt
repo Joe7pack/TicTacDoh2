@@ -51,7 +51,7 @@ class WebServerInterfaceUsersOnlineTask {
             val trackingInfo = androidId + latitude + longitude
             val urlData = "/gamePlayer/update/?id=$mPlayer1Id$trackingInfo&onlineNow=true&playingNow=false&opponentId=0&userName=$mPlayer1Name"
             sendMessageToAppServer(urlData)
-            val settings = mCallerActivity!!.getSharedPreferences(MainActivity.UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
+            val settings = mCallerActivity!!.getSharedPreferences(WillyShmoApplication.UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
             val editor = settings.edit()
             editor.putString("ga_users_online", mUsersOnline)
             // Commit the edits!

@@ -3,7 +3,7 @@ package com.guzzardo.tictacdoh2
 import android.content.Context
 import android.content.res.Resources
 import android.util.Log
-import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
+import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

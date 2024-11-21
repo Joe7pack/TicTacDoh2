@@ -22,7 +22,7 @@ class PrizesAvailableActivity : androidx.fragment.app.FragmentActivity(), ToastM
         mApplicationContext = applicationContext
         mResources = resources
         errorHandler = ErrorHandler()
-        val settings = getSharedPreferences(MainActivity.UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        val settings = getSharedPreferences(WillyShmoApplication.UserPreferences.PREFS_NAME, MODE_PRIVATE)
         mDistanceUnitOfMeasure = settings.getString(GameActivity.DISTANCE_UNIT_OF_MEASURE, "M").toString()
         var distanceDescription = getString(R.string.distance_in_miles)
         if (mDistanceUnitOfMeasure == "K") {

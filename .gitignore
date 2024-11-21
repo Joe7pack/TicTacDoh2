@@ -1,5 +1,10 @@
 *.iml
 .gradle
+.idea
+app/libs
+app/proguard-rules.pro
+app/src/androidTest/
+
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -15,4 +20,7 @@
 local.properties
 gradlew
 gradlew.bat
+gradle/wrapper/
+license/build/
+
 

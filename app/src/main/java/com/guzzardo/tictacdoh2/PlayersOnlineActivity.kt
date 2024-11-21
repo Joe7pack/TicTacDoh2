@@ -19,7 +19,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.ListFragment
-import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
+import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.getConfigMap
 import kotlinx.coroutines.*
 import org.json.JSONException

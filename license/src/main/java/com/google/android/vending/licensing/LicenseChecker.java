@@ -69,14 +69,14 @@ public class LicenseChecker implements ServiceConnection {
 
     private ILicensingService mService;
 
-    private PublicKey mPublicKey;
+    final private PublicKey mPublicKey;
     private final Context mContext;
     private final Policy mPolicy;
     /**
      * A handler for running tasks on a background thread. We don't want license processing to block
      * the UI thread.
      */
-    private Handler mHandler;
+    final private Handler mHandler;
     private final String mPackageName;
     private final String mVersionCode;
     private final Set<LicenseValidator> mChecksInProgress = new HashSet<LicenseValidator>();
@@ -133,7 +133,7 @@ public class LicenseChecker implements ServiceConnection {
      * source string: "com.android.vending.licensing.ILicensingService"
      * <p>
      *
-     * @param callback
+     * @param callback to Android OS
      */
     public synchronized void checkAccess(LicenseCheckerCallback callback) {
         // If we have a valid recent LICENSED response, we can skip asking
@@ -186,7 +186,7 @@ public class LicenseChecker implements ServiceConnection {
                 } catch (SecurityException e) {
                     callback.applicationError(LicenseCheckerCallback.ERROR_MISSING_PERMISSION);
                 } catch (Base64DecoderException e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "Base64DecoderException ");
                 }
             } else {
                 mPendingChecks.offer(validator);
@@ -238,7 +238,7 @@ public class LicenseChecker implements ServiceConnection {
 
     private class ResultListener extends ILicenseResultListener.Stub {
         private final LicenseValidator mValidator;
-        private Runnable mOnTimeout;
+        final private Runnable mOnTimeout;
 
         public ResultListener(LicenseValidator validator) {
             mValidator = validator;
@@ -258,8 +258,7 @@ public class LicenseChecker implements ServiceConnection {
 
         // Runs in IPC thread pool. Post it to the Handler, so we can guarantee
         // either this or the timeout runs.
-        public void verifyLicense(final int responseCode, final String signedData,
-                                  final String signature) {
+        public void verifyLicense(final int responseCode, final String signedData, final String signature) {
             mHandler.post(new Runnable() {
                 public void run() {
                     Log.i(TAG, "Received response.");
@@ -290,12 +289,11 @@ public class LicenseChecker implements ServiceConnection {
                         }
 
                         if (logResponse) {
-                            String android_id = Secure.getString(mContext.getContentResolver(),
-                                    Secure.ANDROID_ID);
+                            String android_id = Secure.getString(mContext.getContentResolver(), Secure.NAME);
                             Date date = new Date();
                             Log.d(TAG, "Server Failure: " + stringError);
                             Log.d(TAG, "Android ID: " + android_id);
-                            Log.d(TAG, "Time: " + date.toGMTString());
+                            Log.d(TAG, "Time: " + date.getTime());
                         }
                     }
 
@@ -376,7 +374,7 @@ public class LicenseChecker implements ServiceConnection {
     /**
      * Get version code for the application package name.
      *
-     * @param context
+     * @param context from application
      * @param packageName application package name
      * @return the version code or empty string if package not found
      */

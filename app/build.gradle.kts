@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     //alias(libs.plugins.kotlin.kapt)
     id("com.google.gms.google-services")
-    //id("kotlin-parcelize")
     id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
@@ -48,15 +47,9 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.material)
     implementation(libs.material3)
-    //implementation(libs.material3)
-    //implementation("com.google.android.material:material:1.12.0")
-    implementation("com.google.android.material:material:1.3.0")
-    //implementation("androidx.compose.material3:material3-window-size-class:1.3.1")
-    //implementation(libs.androidx.material3.window.size.class)
-    //implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.4.0-alpha03")
-    implementation("androidx.preference:preference:1.2.1")
+    implementation(libs.androidx.preference)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -64,10 +57,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    //implementation(libs.androidx.material3)
-    //implementation(libs.material3.android)
     implementation(libs.androidx.appcompat)
-    //implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.fragment.ktx)
@@ -77,9 +67,7 @@ dependencies {
 
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
-
     // When using the BoM, you don't specify versions in Firebase library dependencies
-
     // Add the dependency for the Firebase SDK for Google Analytics
     implementation(libs.firebase.analytics)
     implementation(libs.androidx.appsearch)
@@ -95,6 +83,8 @@ dependencies {
         //"exclude" to listOf()
     )))
 
+    implementation(libs.androidx.core.splashscreen)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -102,8 +92,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    //apply(plugin = "com.google.gms.google-services")
 
     implementation(project(":license"))
 }

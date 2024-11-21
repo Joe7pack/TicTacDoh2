@@ -32,7 +32,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.guzzardo.tictacdoh2.MainActivity.UserPreferences
+import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mPlayer1Name
 import com.guzzardo.tictacdoh2.WillyShmoApplication.Companion.mPlayer2Name
 
