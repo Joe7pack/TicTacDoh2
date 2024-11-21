@@ -36,7 +36,6 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
     private var mCheckLicenseButton: Button? = null
     private var mLicenseCheckerCallback: LicenseCheckerCallback? = null
     private var mChecker: LicenseChecker? = null
-    protected var mActive = true
     var MSG_KEY = "message key"
 
     private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
@@ -140,7 +139,7 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
     }
 
     private fun displayResult(result: String) {
-        mHandler!!.post {
+        mHandler.post {
             mStatusText!!.text = result
             mCheckLicenseButton!!.isEnabled = true
         }
@@ -148,7 +147,7 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
     }
 
     private fun displayDialog(showRetry: Boolean) {
-        mHandler!!.post {
+        mHandler.post {
             mCheckLicenseButton!!.isEnabled = true
         }
     }
@@ -273,7 +272,6 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
         private var mPlayersTooClose = false
         var callerActivity: ToastMessage? = null
         private var mResources: Resources? = null
-        private var mStartMainActivity = false
         var androidId: String? = null
         var willyShmoApplicationContext: Context? = null
         //private var mGoogleApiClient: GoogleApiClient? = null
@@ -325,10 +323,6 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
         set(playersTooClose) {
             mPlayersTooClose = playersTooClose
             writeToLog("WillyShmoApplication","setPlayersTooClose(): $mPlayersTooClose")
-        }
-
-        fun setMainStarted(startMainActivity: Boolean) {
-            mStartMainActivity = startMainActivity
         }
 
         private fun writeToLog(filter: String, msg: String) {
