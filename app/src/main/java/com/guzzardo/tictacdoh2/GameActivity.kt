@@ -46,7 +46,7 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
+class GameActivity() : Activity(), ToastMessage {
     private var mServer = false
     private var mClient = false
     private val mHandler = Handler(Looper.getMainLooper(), MyHandlerCallback())
@@ -124,11 +124,18 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
         mHostName = getConfigMap("RabbitMQIpAddress")
         mQueuePrefix = getConfigMap("RabbitMQQueuePrefix")
 
-        val intentExtras = intent.getExtras() //StringExtra(GameActivity.PLAYER1_NAME)
+        val intentExtras = intent.extras //StringExtra(GameActivity.PLAYER1_NAME)
         intentExtras?.putParcelable("intentExtras", mParcelable)
         val myParcel = Parcel.obtain()
         val myStrings = myParcel.createStringArray()
-        activityFromParcel(myParcel)
+        myStrings?.plus("donna")
+        val list = ArrayList<String>()
+        myParcel.writeString("joe")
+        mParcelable.writeToParcel(myParcel, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
+        //val activityParser =  activityFromParcel(myParcel)
+        //activityParser.writeToParcel(myParcel, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
+        val user = User("Joe", "Guzzardo", 70)
+        user.writeToParcel(myParcel, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
 
         //mStartSource = intent.getParcelableExtra<ParcelItems>(PARCELABLE_VALUES).toString()
         mStartSource = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -197,7 +204,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
                 override fun onReceiveMessage(message: ByteArray?) {
                     val text = String(message!!, StandardCharsets.UTF_8)
                     mRabbitMQServerResponse = text
-                    val dateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+                    val dateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
                     writeToLog("GameActivity", "server OnReceiveMessageHandler received message: $text at my time $dateTime")
                 } // end onReceiveMessage
             }) // end setOnReceiveMessageHandler
@@ -251,7 +258,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
             val trackingInfo = androidId + latitude + longitude
             val urlData = ("/gamePlayer/update/?onlineNow=true&playingNow=false&opponentId=0" + trackingInfo + "&id="
                 + mPlayer1Id + "&userName=" + mPlayer1Name)
-            val messageResponse = sendMessageToAppServer(urlData,false)
+            val messageResponse = sendMessageToAppServer(urlData, false)
             writeToLog("GameActivity", "onResume - we are serving but we're not a client, messageResponse: $messageResponse")
             // hack to deal with stale leftGame message that I can't seem to get rid of for some goddamn reason
             if (mStartSource != null && mStartSource!!.contains("Shakespeare")) {
@@ -879,7 +886,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
             }
             if (msg.what == DISMISS_WAIT_FOR_NEW_GAME_FROM_SERVER) { //This is called from the Client thread
                 val urlData = ("/gamePlayer/update/?id=$mPlayer1Id&playingNow=true&opponentId=$mPlayer2Id&userName=$mPlayer1Name")
-                val messageResponse = sendMessageToAppServer(urlData,false)
+                val messageResponse = sendMessageToAppServer(urlData, false)
                 if (mClientWaitDialog == null) {
                     sendToastMessage(getString(R.string.torqued_up_really_well))
                     return true
@@ -1956,7 +1963,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
                     }.await()
                 }
                 val urlData = "/gamePlayer/update/?id=$mPlayer1Id&playingNow=false&onlineNow=false&opponentId=0"
-                val messageResponse = sendMessageToAppServer(urlData,false)
+                val messageResponse = sendMessageToAppServer(urlData, false)
                 mPlayer2NetworkScore = 0
                 mPlayer1NetworkScore = mPlayer2NetworkScore
                 mClientRunning = false
@@ -1968,7 +1975,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
     override fun onPause() {
         super.onPause()
         writeToLog("GameActivity", "+++++++++++++++++++++> onPause called, mClientRunning: $mClientRunning, serverIsPlayingNow: $mServerIsPlayingNow, isServerRunning: $isServerRunning")
-        val dateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+        val dateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
         val rnds = (0..1000000).random() // generated random from 0 to 1,000,000 inclusive
 
         if (mClientRunning) {
@@ -2044,7 +2051,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
             mHandler.sendEmptyMessage(NEW_GAME_FROM_CLIENT)
             mServerIsPlayingNow = true
             mServerThread!!.setMessageToClient("serverAccepted")
-            val messageResponse = sendMessageToAppServer(urlData, !start)
+            val messageResponse = sendMessageToAppServer(urlData, false)
             writeToLog("GameActivity", "setNetworkGameStatusAndResponse start guy messageResponse: $messageResponse")
             //TODO - Server side - checkDistanceToOpponent
         } else {
@@ -2060,7 +2067,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
                     mServerThread!!.setMessageToClient("noPlay, $mPlayer1Name")
                 }
             }
-            val messageResponse = sendMessageToAppServer(urlData, !start)
+            val messageResponse = sendMessageToAppServer(urlData, true)
             writeToLog("GameActivity", "setNetworkGameStatusAndResponse finish guy messageResponse: $messageResponse")
             finish()
         }
@@ -2280,7 +2287,7 @@ class GameActivity() : Activity(), ToastMessage,  ActivityParcelableCreator {
 
     private fun updateWebServerScore() {
         val urlData = "/gamePlayer/updateGamesPlayed/?id=$mPlayer1Id&score=$mPlayer1NetworkScore"
-        val messageResponse = sendMessageToAppServer(urlData,false)
+        val messageResponse = sendMessageToAppServer(urlData, false)
         writeToLog("GameActivity", "updateWebServerScore() messageResponse: $messageResponse")
     }
 

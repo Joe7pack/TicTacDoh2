@@ -10,8 +10,10 @@ plugins {
 
 
 }
-/*
-dependencies {
-    implementation(project("license"))
+
+allprojects { // use this to find deprecated code within libraries
+    tasks.withType<JavaCompile>().configureEach {
+        options.compilerArgs.add("-Xlint:unchecked")
+        options.isDeprecation = true
+    }
 }
-*/

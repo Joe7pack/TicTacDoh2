@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.play.services.ads)
     implementation(libs.androidx.multidex)
     implementation(libs.play.services.location)
+    implementation(libs.androidx.core.splashscreen)
 
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
@@ -77,13 +78,10 @@ dependencies {
     // PlatformStorage is compatible with Android 12+ devices, and offers additional features
     // to LocalStorage.
     implementation(libs.androidx.appsearch.platform.storage)
-    implementation(fileTree(mapOf(
-        "dir" to "libs",
-        "include" to listOf("*.aar", "*.jar")
-        //"exclude" to listOf()
-    )))
+    //"exclude" to listOf()
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar", "*.jar"))))
 
-    implementation(libs.androidx.core.splashscreen)
+    implementation(project(":license"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -92,6 +90,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation(project(":license"))
 }

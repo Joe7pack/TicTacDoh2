@@ -51,8 +51,7 @@
 	<string name="player_check_string">player</string>
 	<!-- string name="about_2">Copyright © 1986&#8211;2013 &#8211; Tom Volpert and
 		Joe Guzzardo. U.S. Patent number 4,813,681. All rights reserved.</string -->
-	<string name="about_2" translatable="false">Copyright © 1986&#8211;2021 &#8211; Tom Volpert and
-		Joe Guzzardo. All rights reserved.</string>
+	<string name="about_2" translatable="false">Copyright © 1986&#8211;2021 &#8211; Joe Guzzardo. All rights reserved.</string>
 	<string name="about_3" translatable="false">Check your score and meet Willy and the rest of the Hobo
 		gang at WillyShmo.com</string>
 	<string name="about_4" translatable="false">    </string>

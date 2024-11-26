@@ -5,7 +5,7 @@ import kotlinx.parcelize.parcelableCreator
 
 interface ActivityParcelableCreator {
     fun activityFromParcel(parcel: Parcel): ActivityParser {
-        return parcelableCreator< ActivityParser>().createFromParcel(parcel)
+        return parcelableCreator<ActivityParser>().createFromParcel(parcel)
     }
 
 }

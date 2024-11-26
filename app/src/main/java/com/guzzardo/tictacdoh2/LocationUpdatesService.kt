@@ -263,6 +263,7 @@ class LocationUpdatesService : android.app.Service() {
     }
 
     // Returns true if this is a foreground service.
+    @Suppress("DEPRECATION")
     fun serviceIsRunningInForeground(context: Context): Boolean {
         val manager = context.getSystemService(ACTIVITY_SERVICE) as ActivityManager
         for (service in manager.getRunningServices(Int.MAX_VALUE)) {

@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -378,10 +379,16 @@ public class LicenseChecker implements ServiceConnection {
      * @param packageName application package name
      * @return the version code or empty string if package not found
      */
+    @SuppressWarnings("deprecation")
     private static String getVersionCode(Context context, String packageName) {
         try {
-            return String.valueOf(
-                    context.getPackageManager().getPackageInfo(packageName, 0).versionCode);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                return String.valueOf(
+                    context.getPackageManager().getPackageInfo(packageName, 0).getLongVersionCode());
+            } else {
+                return String.valueOf(
+                        context.getPackageManager().getPackageInfo(packageName, 0).versionCode);
+            }
         } catch (NameNotFoundException e) {
             Log.e(TAG, "Package not found. could not get version code.");
             return "";
