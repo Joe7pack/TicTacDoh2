@@ -20,10 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Starting"
         tools:node="replace"
-        tools:targetApi="31">
+        tools:targetApi="35">
 
         <activity
-            android:name="MainActivity"
+            android:name="StartActivity"
             android:theme="@style/TicTacDoh2"
             android:exported="true">
             <intent-filter>
@@ -33,14 +33,9 @@
         </activity>
 
         <activity
-            android:name="SplashScreen"
-            android:label="@string/splash_name"
-            android:parentActivityName="MainActivity"
-            android:theme="@style/TicTacDoh2"
-            android:exported="true">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity"/>
+            android:name="MainActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="landscape">
         </activity>
 
         <activity
@@ -56,9 +51,58 @@
         <activity
             android:name="SettingsDialogs"
             android:label="@string/settings"
-            android:screenOrientation="landscape"
-            android:theme="@style/TicTacDoh2">
+            android:theme="@style/TicTacDoh2"
+            android:screenOrientation="landscape">
         </activity>
+
+        <activity
+            android:name="OnePlayerActivity"
+            android:label="@string/one_player_name"
+            android:theme="@style/TicTacDoh2"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name="TwoPlayerActivity"
+            android:label="@string/two_player_name"
+            android:theme="@style/TicTacDoh2"
+            android:screenOrientation="landscape">
+        </activity>
+
+        <activity
+            android:name="RulesActivity"
+            android:label="@string/rules"
+            android:theme="@style/TicTacDoh2"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name="AboutActivity"
+            android:label="@string/about"
+            android:theme="@style/TicTacDoh2"
+            android:screenOrientation="landscape">
+        </activity>
+
+        <activity
+            android:name="GameActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:noHistory="true"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name="PlayOverNetwork"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".PlayersOnlineActivity"
+            android:label="@string/select_player"
+            android:noHistory="true"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name="PrizesAvailableActivity"
+            android:label="@string/show_prizes"
+            android:noHistory="true"
+            android:screenOrientation="landscape"/>
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <!--meta-data
             tools:replace="android:resource"

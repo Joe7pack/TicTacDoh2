@@ -3,7 +3,7 @@
 
 	<!-- following elements need to be changed before going to production -->
 	<string name="debug" translatable="false">true</string>
-	<string name="prizesAvailable" translatable="false">true</string>
+	<string name="prizesAvailable" translatable="false">false</string>
 	<string name="showAds" translatable="false">true</string>
 	<!-- above elements need to be changed before going to production -->
 

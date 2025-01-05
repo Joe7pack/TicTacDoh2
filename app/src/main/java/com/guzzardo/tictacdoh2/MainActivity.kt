@@ -61,8 +61,6 @@ class MainActivity : AppCompatActivity()  {
 
     // Called when the activity is first created.
     public override fun onCreate(savedInstanceState: Bundle?) {
-        // Handle the splash screen transition.
-        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
 
@@ -71,10 +69,6 @@ class MainActivity : AppCompatActivity()  {
         val adRequest = AdRequest.Builder().build()
         mAdView!!.loadAd(adRequest)
          */
-
-        val willyShmoApplicationContext = this.applicationContext
-        val myIntent = Intent(willyShmoApplicationContext, WillyShmoApplication::class.java)
-        startActivity(myIntent)
     }
 
     public override fun onSaveInstanceState(savedInstanceState: Bundle) {

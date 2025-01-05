@@ -2,7 +2,6 @@
 <resources>
 
     <style name="MainTheme" parent="Theme.AppCompat.Light">
-
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:windowTitleSize">25dip</item>
@@ -11,15 +10,13 @@
         <item name="android:windowContentOverlay">@null</item>
         <!--
         item name="android:layout_alignParentTop">true</item>
-        <item name="android:layout_centerInParent">true</item
+        <item name="android:layout_centerInParent">true</item>
         -->
-
     </style>
 
     <style name="TicTacDoh2" parent="MainTheme">
         <item name="android:windowBackground">@drawable/willy_shmo_icon</item>
-        <item name="android:screenOrientation">landscape</item>
- 		<!-- this seems to have no effect here -->
+		<!-- this seems to have no effect here -->
         <!-- item name="android:background">#ffffff</item -->
         <item name="android:textColor">#000000</item>
     </style>
@@ -38,6 +35,13 @@
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light">
         <item name="android:textColorPrimary">#009922</item>
         <item name="android:textColorSecondary">#AABBCC</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@drawable/background_splash</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <!--

@@ -89,8 +89,8 @@ class GameActivity() : Activity(), ToastMessage {
     }
 
     /** Called when the activity is first created.  */
-    @Suppress("DEPRECATION")
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    //@Suppress("DEPRECATION")
+    //@RequiresApi(Build.VERSION_CODES.TIRAMISU)
     public override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
         Companion.resources = resources
@@ -125,13 +125,13 @@ class GameActivity() : Activity(), ToastMessage {
         mQueuePrefix = getConfigMap("RabbitMQQueuePrefix")
 
         val intentExtras = intent.extras //StringExtra(GameActivity.PLAYER1_NAME)
-        intentExtras?.putParcelable("intentExtras", mParcelable)
+        //intentExtras?.putParcelable("intentExtras", mParcelable)
         val myParcel = Parcel.obtain()
         val myStrings = myParcel.createStringArray()
         myStrings?.plus("donna")
         val list = ArrayList<String>()
         myParcel.writeString("joe")
-        mParcelable.writeToParcel(myParcel, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
+        //mParcelable.writeToParcel(myParcel, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
         //val activityParser =  activityFromParcel(myParcel)
         //activityParser.writeToParcel(myParcel, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
         val user = User("Joe", "Guzzardo", 70)
@@ -2333,7 +2333,7 @@ class GameActivity() : Activity(), ToastMessage {
 
     companion object {
         private var mGameActivity: GameActivity? = null
-        lateinit var mParcelable: Parcelable // = null
+        //lateinit var mParcelable: Parcelable // = null
         private var mApplicationContext: Context? = null
         var errorHandler: ErrorHandler? = null
         //TODO - I think all of these constants can be put into an interface?

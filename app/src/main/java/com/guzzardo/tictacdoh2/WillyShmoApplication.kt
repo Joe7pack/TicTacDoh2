@@ -51,7 +51,6 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
         mErrorHandler = ErrorHandler()
-        //moved here from MainActivity OnCreate()
         findViewById<View>(R.id.rules).setOnClickListener { showRules() }
         findViewById<View>(R.id.about).setOnClickListener { showAbout() }
         findViewById<View>(R.id.two_player).setOnClickListener { showTwoPlayers() }
@@ -59,53 +58,54 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
         findViewById<View>(R.id.settings_dialog).setOnClickListener { showDialogs() }
         val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
         mApplicationContext = applicationContext
+        mResources = resources
         mPlayer1Name = settings.getString(GameActivity.PLAYER1_NAME, getString(R.string.player_1)).toString()
         mPlayer2Name = settings.getString(GameActivity.PLAYER2_NAME, getString(R.string.player_2)).toString()
         mStatusText = findViewById<View>(R.id.status_text) as TextView
         mCheckLicenseButton = findViewById<View>(R.id.check_license_button) as Button
         mCheckLicenseButton!!.setOnClickListener { doCheck() }
-        val anim: Animation = AlphaAnimation(0.0f, 1.0f)
-        anim.duration = 500 //You can manage the time of the blink with this parameter
-        anim.startOffset = 20
-        anim.repeatMode = Animation.REVERSE
-        anim.repeatCount = Animation.INFINITE
-        mPrizeButton = findViewById<View>(R.id.prizes_dialog) as Button
-        mPrizeButton!!.setOnClickListener { showPrizes() }
-        mPrizeButton!!.background = AppCompatResources.getDrawable(applicationContext, R.drawable.backwithgreenborder)
-        mPrizeButton!!.startAnimation(anim)
-        if (isNetworkAvailable && prizesAreAvailable) {
-            mPrizeButton!!.visibility = View.VISIBLE
-        } else {
-            mPrizeButton!!.visibility = View.GONE
-        }
-
+        mConfigMap = HashMap<String?, String?>()
+/*
         // Try to use more data here. ANDROID_ID is a single point of attack.
+        //androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.NAME)
         // Library calls this when it's done.
         mLicenseCheckerCallback = MyLicenseCheckerCallback()
         // Construct the LicenseChecker with a policy.
         mChecker = LicenseChecker(
-            this, ServerManagedPolicy(
-                this,
-                AESObfuscator(SALT, packageName, deviceId)
-            ),
+            this,
+            ServerManagedPolicy(this, AESObfuscator(SALT, packageName, deviceId)),
             BASE64_PUBLIC_KEY
         )
-        //androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        mResources = resources
-        mConfigMap = HashMap<String?, String?>()
-        //copied from SplashScreen:
+ */
         var mPrizesAvailable = false
         if ("true".equals(mResources?.getString(R.string.prizesAvailable), ignoreCase = true)) {
             mPrizesAvailable = true
         }
-        mLatitude = 0.0
-        mLongitude = 0.0
-        willyShmoApplicationContext = this.applicationContext
-        prizesAreAvailable = false
-        val willyShmoApplicationContext = willyShmoApplicationContext
-        val myIntent = Intent(willyShmoApplicationContext, FusedLocationActivity::class.java)
-        startActivity(myIntent)
+        if (mPrizesAvailable) {
+            val anim: Animation = AlphaAnimation(0.0f, 1.0f)
+            anim.duration = 500 //You can manage the time of the blink with this parameter
+            anim.startOffset = 20
+            anim.repeatMode = Animation.REVERSE
+            anim.repeatCount = Animation.INFINITE
+            mPrizeButton = findViewById<View>(R.id.prizes_dialog) as Button
+            mPrizeButton!!.setOnClickListener { showPrizes() }
+            mPrizeButton!!.background =
+                AppCompatResources.getDrawable(applicationContext, R.drawable.backwithgreenborder)
+            mPrizeButton!!.startAnimation(anim)
+            if (isNetworkAvailable && prizesAreAvailable) {
+                mPrizeButton!!.visibility = View.VISIBLE
+            } else {
+                mPrizeButton!!.visibility = View.GONE
+            }
+            mLatitude = 0.0
+            mLongitude = 0.0
+            willyShmoApplicationContext = this.applicationContext
+            prizesAreAvailable = false
+            val willyShmoApplicationContext = willyShmoApplicationContext
+            val myIntent = Intent(willyShmoApplicationContext, FusedLocationActivity::class.java)
+            startActivity(myIntent)
+        }
         writeToLog("MainActivity", "onCreate finished")
     }
 
@@ -238,7 +238,7 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
 
     public override fun onDestroy() {
         super.onDestroy()
-        mChecker!!.onDestroy()
+        //mChecker!!.onDestroy()
     }
 
     override fun sendToastMessage(message: String?) {
