@@ -27,8 +27,7 @@
        	android:layout_marginStart="5dip"
    		android:layout_height="wrap_content"
    		android:layout_alignParentTop="true"
-   		android:layout_alignParentStart="true"
-       	/>  
+   		android:layout_alignParentStart="true"/>
        	
    	<Button
        	android:id="@+id/two_player"
@@ -37,8 +36,7 @@
    	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
    		android:layout_alignParentTop="true"
-   		android:layout_alignParentEnd="true"
-       	/>      
+   		android:layout_alignParentEnd="true"/>
      
     <Button
     	android:id="@+id/settings_dialog"
@@ -46,10 +44,8 @@
     	android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 		android:layout_marginStart="5dip"
-		android:layout_below="@id/one_player"
-        />
-        	    
-        	   
+		android:layout_below="@id/one_player"/>
+
     <Button
      	android:id="@+id/rules"
        	android:text="@string/rules"
@@ -57,8 +53,7 @@
  		android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
    		android:layout_alignEnd="@id/two_player"
-   		android:layout_below="@id/two_player"
-       	/>
+   		android:layout_below="@id/two_player"/>
     
     <Button
         android:id="@+id/about"
@@ -67,8 +62,7 @@
        	android:layout_width="wrap_content"
  		android:layout_height="wrap_content"
    		android:layout_alignEnd="@id/two_player"
-   		android:layout_below="@id/rules"
-       	/>
+   		android:layout_below="@id/rules"/>
     
     <Button
         android:id="@+id/prizes_dialog"
@@ -77,7 +71,7 @@
        	android:layout_width="wrap_content"
  		android:layout_height="wrap_content"
  		android:layout_centerHorizontal="true"
-       	/>
+		android:visibility="gone"/>
 
 	<Button
 		android:id="@+id/check_license_button"
@@ -85,21 +79,14 @@
 		android:layout_height="wrap_content"
 		android:text="@string/check_license"
 		android:layout_below="@id/settings_dialog"
-		/>
-
-
+		android:visibility="gone"/>
 
 	<TextView
 		android:id="@+id/status_text"
 		android:layout_width="wrap_content"
 		android:layout_height="0dip"
-		android:layout_weight="1"
-		android:layout_below="@id/prizes_dialog"
-		/>
+		android:layout_below="@id/prizes_dialog"/>
 
-
-
-       	
 	<com.google.android.gms.ads.AdView android:id="@+id/adView"
 		xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
@@ -107,7 +94,7 @@
         ads:adUnitId="a14c4786f7a05ac"
         ads:adSize="BANNER"
         android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true" />
+		android:layout_centerHorizontal="true"/>
 
 	<!-- ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
 	ads:loadAdOnCreate="true" -->
