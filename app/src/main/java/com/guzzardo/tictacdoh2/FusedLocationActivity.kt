@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.multidex.BuildConfig
 import com.google.android.gms.location.*
@@ -110,6 +111,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
      *
      * @param savedInstanceState The activity state saved in the Bundle.
      */
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun updateValuesFromBundle(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
             // Update the value of mRequestingLocationUpdates from the Bundle, and make sure that
