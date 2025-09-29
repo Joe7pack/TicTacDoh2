@@ -2390,8 +2390,8 @@ class GameActivity() : Activity(), ToastMessage {
         private var mWillyScore = 0
         private var mPlayer1NetworkScore = 0
         private var mPlayer2NetworkScore = 0
-        var moveModeTouch  = false //false = drag move mode; true = touch move mode
-        var soundMode = false //false = no sound; true = sound
+        var moveModeTouch  = true //false = drag move mode; true = touch move mode
+        var soundMode = true //false = no sound; true = sound
         private var HUMAN_VS_HUMAN = false
         private var HUMAN_VS_NETWORK = false
         private var mSavedCell = 0 //hack for saving cell selected when XO token is chosen as first move
