@@ -8,7 +8,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
 class RulesActivity : Activity() {
-    private var mAdView: com.google.android.gms.ads.AdView? = null
+    var mAdView: AdView? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +17,7 @@ class RulesActivity : Activity() {
             //showRules()
             finish()
         }
-        mAdView = findViewById<android.view.View>(R.id.ad_rules) as AdView
+        (findViewById<android.view.View>(R.id.ad_rules) as AdView).also { mAdView = it }
         val adRequest = AdRequest.Builder().build()
         mAdView!!.loadAd(adRequest)
     }
