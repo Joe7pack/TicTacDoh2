@@ -16,7 +16,6 @@
 package com.guzzardo.tictacdoh2
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -30,6 +29,7 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.edit
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
@@ -211,7 +211,7 @@ class SettingsDialogs : Activity(), ToastMessage {
                         mPlayer1Name = player1Name
                         val player1TitleAndName = getString(R.string.alert_dialog_text_entry_player1_name) + " $mPlayer1Name"
                         mButtonPlayer1!!.text = player1TitleAndName
-                        editor.commit()
+                        editor.apply()
                     }
                 } else {
                     val player2Name = String(userNameChars)
@@ -296,16 +296,17 @@ class SettingsDialogs : Activity(), ToastMessage {
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
         val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putString(GameActivity.PLAYER1_NAME, mPlayer1Name)
-        editor.putString(GameActivity.PLAYER2_NAME, mPlayer2Name)
-        editor.putBoolean(GameActivity.MOVE_MODE, mMoveModeTouch)
-        editor.putBoolean(GameActivity.SOUND_MODE, mSoundMode)
-        editor.putInt(GameActivity.TOKEN_SIZE, mTokenSize)
-        editor.putInt(GameActivity.TOKEN_COLOR_1, mTokenColor1)
-        editor.putInt(GameActivity.TOKEN_COLOR_2, mTokenColor2)
-        editor.putString(GameActivity.DISTANCE_UNIT_OF_MEASURE, mDistanceUnitOfMeasure)
-        editor.commit()
+        settings.edit {
+            putString(GameActivity.PLAYER1_NAME, mPlayer1Name)
+            putString(GameActivity.PLAYER2_NAME, mPlayer2Name)
+            putBoolean(GameActivity.MOVE_MODE, mMoveModeTouch)
+            putBoolean(GameActivity.SOUND_MODE, mSoundMode)
+            putInt(GameActivity.TOKEN_SIZE, mTokenSize)
+            putInt(GameActivity.TOKEN_COLOR_1, mTokenColor1)
+            putInt(GameActivity.TOKEN_COLOR_2, mTokenColor2)
+            putString(GameActivity.DISTANCE_UNIT_OF_MEASURE, mDistanceUnitOfMeasure)
+            apply()
+        }
         writeToLog("SettingsDialog", "onStop() called mPlayer1Name: $mPlayer1Name")
     }
 
@@ -341,12 +342,13 @@ class SettingsDialogs : Activity(), ToastMessage {
     private fun resetScores() {
         // We need an Editor object to make preference changes.
         // All objects are from android.context.Context
-        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putInt(GameActivity.PLAYER1_SCORE, 0)
-        editor.putInt(GameActivity.PLAYER2_SCORE, 0)
-        editor.putInt(GameActivity.WILLY_SCORE, 0)
-        editor.commit()
+        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        settings.edit {
+            putInt(GameActivity.PLAYER1_SCORE, 0)
+            putInt(GameActivity.PLAYER2_SCORE, 0)
+            putInt(GameActivity.WILLY_SCORE, 0)
+            apply()
+        }
     }
 
     private fun setMoveModeSelection(moveMode: Int) {
@@ -354,28 +356,31 @@ class SettingsDialogs : Activity(), ToastMessage {
     }
 
     private fun setMoveMode() {
-        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putBoolean(GameActivity.MOVE_MODE, mMoveModeTouch)
-        editor.commit()
+        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        settings.edit {
+            putBoolean(GameActivity.MOVE_MODE, mMoveModeTouch)
+            apply()
+        }
     }
 
     private fun setTokenSize() {
-        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putInt(GameActivity.TOKEN_SIZE, mTokenSize)
-        editor.commit()
+        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        settings.edit {
+            putInt(GameActivity.TOKEN_SIZE, mTokenSize)
+            apply()
+        }
     }
 
     private fun setTokenColor(playerNumber: Int) {
-        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        if (playerNumber == 1) {
-            editor.putInt(GameActivity.TOKEN_COLOR_1, mTokenColor)
-        } else {
-            editor.putInt(GameActivity.TOKEN_COLOR_2, mTokenColor)
+        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        settings.edit {
+            if (playerNumber == 1) {
+                putInt(GameActivity.TOKEN_COLOR_1, mTokenColor)
+            } else {
+                putInt(GameActivity.TOKEN_COLOR_2, mTokenColor)
+            }
+            apply()
         }
-        editor.commit()
     }
 
     private fun setSoundModeSelection(soundMode: Int) {
@@ -390,17 +395,19 @@ class SettingsDialogs : Activity(), ToastMessage {
     }
 
     private fun setSoundMode() {
-        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putBoolean(GameActivity.SOUND_MODE, mSoundMode)
-        editor.commit()
+        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        settings.edit {
+            putBoolean(GameActivity.SOUND_MODE, mSoundMode)
+            apply()
+        }
     }
 
     private fun saveDistanceUnitOfMeasure() {
-        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putString(GameActivity.DISTANCE_UNIT_OF_MEASURE, mDistanceUnitOfMeasure)
-        editor.commit()
+        val settings = getSharedPreferences(UserPreferences.PREFS_NAME, MODE_PRIVATE)
+        settings.edit {
+            putString(GameActivity.DISTANCE_UNIT_OF_MEASURE, mDistanceUnitOfMeasure)
+            apply()
+        }
     }
 
     override fun sendToastMessage(message: String?) {
