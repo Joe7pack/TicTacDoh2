@@ -83,6 +83,7 @@ class FusedLocationActivity : android.app.Activity(), ToastMessage {
     val PRIZE_LOAD_IN_PROGRESS = 6
     val PRIZES_READY_TO_DISPLAY = 7
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_with_guidelines)
