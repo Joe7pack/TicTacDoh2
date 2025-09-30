@@ -26,8 +26,8 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.edit
 import androidx.core.content.res.ResourcesCompat
 import com.guzzardo.tictacdoh2.GameView.ICellListener
 import com.guzzardo.tictacdoh2.WillyShmoApplication.UserPreferences
@@ -1570,11 +1570,12 @@ class GameActivity() : Activity(), ToastMessage {
     override fun onStop() {
         super.onStop()
         val settings = getSharedPreferences(UserPreferences.PREFS_NAME, 0)
-        val editor = settings.edit()
-        editor.putInt(PLAYER1_SCORE, mPlayer1Score)
-        editor.putInt(PLAYER2_SCORE, mPlayer2Score)
-        editor.putInt(WILLY_SCORE, mWillyScore)
-        editor.apply()
+        settings.edit {
+            putInt(PLAYER1_SCORE, mPlayer1Score)
+            putInt(PLAYER2_SCORE, mPlayer2Score)
+            putInt(WILLY_SCORE, mWillyScore)
+            apply()
+        }
     }
 
     override fun onDestroy() {
@@ -2439,7 +2440,7 @@ class GameActivity() : Activity(), ToastMessage {
 
         private var isServerRunning: Boolean
             get() = mServerRunning
-            private set(serverRunning) {
+            set(serverRunning) {
                 mServerRunning = serverRunning
             }
     }
