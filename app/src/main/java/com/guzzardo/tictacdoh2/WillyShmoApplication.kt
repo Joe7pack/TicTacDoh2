@@ -22,6 +22,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.vending.licensing.AESObfuscator
 import com.google.android.vending.licensing.LicenseChecker
 import com.google.android.vending.licensing.LicenseCheckerCallback
@@ -48,6 +49,8 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { return@setKeepOnScreenCondition false }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
         mErrorHandler = ErrorHandler()

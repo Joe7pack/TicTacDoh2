@@ -19,6 +19,7 @@ class StartActivity : AppCompatActivity()  {
     public override fun onCreate(savedInstanceState: Bundle?) {
         // Handle the splash screen transition.
         val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { return@setKeepOnScreenCondition false }
         super.onCreate(savedInstanceState)
 
         val willyShmoApplicationContext = this.applicationContext

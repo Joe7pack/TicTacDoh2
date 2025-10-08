@@ -1,7 +1,14 @@
 *.iml
+
+.DS_Store
+.cxx
+.externalNativeBuild
 .gradle
 .idea
+
+app/build
 app/libs
+app/release
 app/proguard-rules.pro
 app/src/androidTest/
 
@@ -12,11 +19,10 @@ app/src/androidTest/
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
+
 /build
 /captures
-.externalNativeBuild
-.cxx
+
 local.properties
 gradlew
 gradlew.bat
