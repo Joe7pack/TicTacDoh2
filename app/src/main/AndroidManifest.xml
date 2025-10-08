@@ -23,11 +23,11 @@
         tools:node="replace"
         tools:targetApi="35">
 
-        <activity
+git         <!--activity
             android:name="StartActivity"
             android:theme="@style/TicTacDoh2"
             android:exported="true">
-        </activity>
+        </activity -->
 
         <activity
             android:name="MainActivity"

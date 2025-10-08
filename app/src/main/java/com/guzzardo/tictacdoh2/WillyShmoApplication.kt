@@ -108,6 +108,7 @@ class WillyShmoApplication : AppCompatActivity(), ToastMessage {
             val willyShmoApplicationContext = willyShmoApplicationContext
             val myIntent = Intent(willyShmoApplicationContext, FusedLocationActivity::class.java)
             startActivity(myIntent)
+            finish()
         }
         writeToLog("MainActivity", "onCreate finished")
     }

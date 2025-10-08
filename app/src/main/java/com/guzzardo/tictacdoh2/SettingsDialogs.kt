@@ -423,8 +423,8 @@ class SettingsDialogs : Activity(), ToastMessage {
 
     companion object {
         private lateinit var resources: Resources
-        private var mMoveModeTouch = true // false = drag move mode; true = touch move mode
-        private var mMoveModeChecked = 1 // 0 = drag move mode; 1 = touch move mode
+        private var mMoveModeTouch = false // false = drag move mode; true = touch move mode
+        private var mMoveModeChecked = 0 // 0 = drag move mode; 1 = touch move mode
         private var mSoundModeChecked = 0 // 0 = sound on; 1 = sound off
         private var mSoundMode = true // false = no sound; true = sound
         private var mDistanceMeasureChecked = 0 // 0 = miles; 1 = kilometers
