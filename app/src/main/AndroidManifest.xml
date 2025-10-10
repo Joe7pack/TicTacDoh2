@@ -23,7 +23,7 @@
         tools:node="replace"
         tools:targetApi="35">
 
-git         <!--activity
+        <!--activity
             android:name="StartActivity"
             android:theme="@style/TicTacDoh2"
             android:exported="true">
